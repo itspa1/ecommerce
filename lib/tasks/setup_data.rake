@@ -1,12 +1,12 @@
 task :setup_data => :environment do 
 
-=begin
 10.times do
 	category = Category.new
 	category.name = Faker::Commerce.department(1)
 	category.save
 end
-=end
+
+end
 
 =begin
 1000.times do 
@@ -25,6 +25,7 @@ end
 end
 =end
 
+=begin
 50.times do 
 		user = User.new
 		user.email = Faker::Internet.email
@@ -50,3 +51,4 @@ end
 		end
 	end
 end
+=end
