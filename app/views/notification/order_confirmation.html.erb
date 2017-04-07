@@ -1,0 +1,36 @@
+<p>Hello <%= @order.user.email %>,</p>
+<p> Your order has been confirmed. </p>
+<p>These are your order line items </p>
+
+<table border="1">
+        <thead>
+            <tr>
+                <th> # </th>
+                <th> Date </th>
+                <th> Products </th>
+                <th> Total </th>
+            </tr>
+        </thead>
+
+        <tbody>
+                <tr>
+                    <td><%= @order.order_number %></td>
+                    <td><%= @order.order_datetime.strftime("%d %B %Y") %></td>
+                    <td> 
+                        <ul>
+                            <% @order.order_line_items.each do |line_item| %>
+                                <li><%= line_item.product.name  %> </li>
+                            <% end %>
+                        </ul>
+                    </td>
+                    <td><%= @order.total %></td>
+                </tr>
+        </tbody>
+    </table>
+
+<br/>
+Thanking you<br/>
+<%= image_tag("https://www.dctacademy.com/wp-content/uploads/2016/03/dct-final.jpg") %>
+
+
+

@@ -1,0 +1,24 @@
+<h2>Listing Customers</h2>
+
+<table border = 1 >
+	<thead>
+  		<tr>
+			<th>email</th>
+			<th>order_count</th>
+			<th>last order date</th>
+			<th>total order value</th>
+		</tr>
+	</thead>
+
+	<tbody>
+				<% User.report.each do |user| %>
+
+		<tr>
+				<td><%= user["email"] %></td>
+				<td><%= user["order_count"] %></td>
+				<td><%= user["last_order_date"].strftime(" %d-%b-%Y ") %></td>
+				<td><%= user["total_order"] %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

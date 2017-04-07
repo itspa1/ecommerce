@@ -1,0 +1,26 @@
+<h2>Listing Customers</h2>
+
+<table border = 1 >
+	<thead>
+  		<tr>
+			<th>order_number</th>
+			<th>customer</th>
+			<th>total</th>
+			<th>order details</th>
+		</tr>
+	</thead>
+
+	<tbody>
+				<% User.orderreport.each do |order| %>
+
+		<tr>
+				<td><%= order["number"] %></td>
+				<td><%= order["customer"] %></td>
+				<td><%= order["total"] %></td>
+				<% order["order_details"].each do |key,value| %>
+				<td><%=key %> - <%= value %></td>
+				<% end %>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

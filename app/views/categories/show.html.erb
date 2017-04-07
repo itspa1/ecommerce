@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<ul>
+<%# Product.where('category_id = ? ',@category.id).each do|product| %>
+ <% @category.products.each do|product| %>
+<li>
+ <%= link_to product.name, product_path(product.id) %> -INR <%= product.price %> 	
+</li>
+<% end %>
+</ul>
+<% if user_signed_in? && current_user.is_admin %>
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<% end %>
+<%= link_to 'Back', categories_path %>

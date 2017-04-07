@@ -1,0 +1,28 @@
+<h2>Products And Category</h2>
+
+<% data = {} %>
+
+<% @categories.each do |category| 
+	data[category.name] = category.products.count 
+	end %>
+
+	<%= column_chart data , xtitle: "Category" ,ytitle: "Products" %>
+
+
+<h2>Top 10 Buyers </h2>
+<% userdata = {} %>
+
+<% @orders.each do |order|
+	userdata[order.user.email] = order.total
+	end %>
+
+	<%= column_chart userdata , xtitle: "User", ytitle: "Amount" %>
+
+<% orderdata = {} %>
+	<h2>Orders Per User</h2>
+
+	<% @orderperuser.uniq{|order| order.user_id}.each do |orderper|
+		orderdata[orderper.user.email] = @orderperuser.find_all{|obj| obj.user_id == orderper.user_id }.count 
+		end%>
+
+<%= column_chart orderdata ,xtitle: "Users", ytitle: "Orders"%>

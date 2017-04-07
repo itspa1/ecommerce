@@ -1,0 +1,69 @@
+<% if @line_items.empty? %>
+<h2>Shopping Cart Is Empty </h2>
+<p> Continue Shopping <%= link_to "here", products_path %> </p>
+<% else %>
+<% total = 0 %>
+<% if !session[:coupon_code].nil? %>
+<% coupon = Coupon.find(session[:coupon_code]) %>
+<% end %>
+<h2> Shopping Cart </h2>
+ <table>
+ 	<thead>
+ 		<tr>
+ 			<th> </th>
+ 			<th> Name </th>
+ 			<th> Price </th>
+ 			<th> Quantity </th>
+ 			<th> Total </th>
+ 			<th> Actions </th>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<% @line_items.each do |line_item| %>
+ 			<tr>
+ 			<td><%= image_tag(line_item.product.cover_url, size: "100x100") %> </td>
+ 			<td> <%=link_to line_item.product.name ,product_path(line_item.product), target: "_blank"%> </td>
+ 			<td> <%= line_item.product.price %> </td>
+ 			<td>
+ 				<%= form_for line_item do |f| %>
+ 				<%= f.select :quantity, line_item.product.stock < 5 ? (1..line_item.product.stock).to_a : (1..5).to_a %>
+ 				<%= f.submit %>
+ 				<% end %>
+ 		 <% line_item.quantity %> 
+ 		 	</td>
+
+ 			<td> <%= line_item.product.price * line_item.quantity %></td>
+ 			<% total += line_item.product.price * line_item.quantity %>
+ 			<td> <%= link_to "remove", cart_path(line_item.id), method: :delete ,data: {confirm: "Are You Sure?"} %></td>	
+ 			</tr>
+ 			<% end %>
+ 	</tbody> 		
+ </table> 
+  <p> Total = <%= total %> </p>
+
+  <% if !coupon.nil? %>
+  <p>discounted  Total = <%= total - coupon.amount %></p>
+  <% end %> 
+
+<% if !@line_items.empty? %>
+	<%= form_for Order.new do |f| %>
+	<%= f.submit "Place My Order" %>
+	<% end %> 
+<% end %>
+
+	<% end %> 
+
+<% if !@line_items.empty? %>
+<p>Apply coupon code</p>
+<% if !session[:coupon_code].nil? %>
+	Coupon has been Applied : <%= coupon.name %>
+<% else %>
+	<%= form_tag("/coupons?type='apply_coupon'", method: :get) do %>
+	<label> Coupon Code </label><br/>
+	<%= text_field_tag :coupon_code %> <br/>
+	<%= submit_tag "Apply Coupon" %>
+	<% end %>
+<% end %>
+
+<% end %> 
+<%= link_to "Home", products_path %>

@@ -1,0 +1,58 @@
+
+<h1>Listing Products</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Availability</th>
+      <th>Stock</th>
+      <th>Avg.rating(total reviews)</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><% if product.cover_url.nil? %>
+          <%= image_tag("/default_pic.jpg", size: "150x150") %>
+          <% else %>
+          <%= image_tag(product.cover_url, size: "150x150") %> 
+          <% end %>
+        </td>
+        <td><%= link_to product.category.name, category_path(product.category), target: "_blank" %></td>
+        <td><%= link_to product.name, product_path(product), target: "_blank" %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= product.availability %></td>
+        <td><%= product.stock %></td>
+        <% if product.reviews.empty? %>
+        <td>No ratings yet</td>
+        <% else %>
+          <% avg = [] %>
+          <% product.reviews.each do|review| %>
+          <% avg.push(review.rating) %>
+          <% end %>
+          <% avg = avg.inject(:+) / avg.length %>
+         <td> <%= avg %> </td>
+        <% end %>
+        <% if user_signed_in? && current_user.is_admin %>
+          <td><%= link_to 'Edit', edit_product_path(product) %></td>
+          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if user_signed_in? && current_user.is_admin %>
+  <%= link_to 'New Product', new_product_path %>
+<% end %>

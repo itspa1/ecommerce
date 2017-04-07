@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+  <title>Ecommerce</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if user_signed_in? %>
+  Welcome <%= current_user.email %>
+  <%= link_to "Home" , root_path %>|
+  <% if current_user.is_admin %>
+    <%= link_to "Dashboard" , dashboard_index_path %> |
+    <%= link_to "customers" , dashboard_customer_path %>|
+    <%= link_to "orders" , dashboard_order_path %>|
+    <% end %>
+  <%= link_to "My Cart(#{current_user.carts.size})" , carts_path %> |
+  <%= link_to "My Orders", orders_path %> |
+  <%= link_to "Account Settings", edit_user_registration_path %> | 
+  <%= link_to "Sign Out", destroy_user_session_path , method: :delete, data: {confirm: "Are You Sure?"} %>
+ <% else %>
+ 	<%= link_to "Sign Up", new_user_registration_path %>
+ 	<%= link_to "Login", new_user_session_path %>
+ <% end %>
+
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<h2>Your Orders</h2>
+<% if @orders.empty? %> 
+	<p>You Haven't Placed Any Order with Us. Place Your First Order <%= link_to "here", products_path%></p>
+<% else %>
+<table>
+	<thead>
+		<tr>
+			<th> # </th>
+			<th> Date </th>
+			<th> Products </th>
+			<th> Total </th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @orders.each do |order| %>
+		<tr>
+			<td><%= order.order_number %> </td>
+			<td><%= order.order_datetime.strftime("%d %B %Y") %></td>
+			<td>
+			<ul>
+				<% order.order_line_items.each do |line_item| %>
+				<li><%=link_to line_item.product.name, line_item.product %></li>
+				<% end %>
+			</ul>
+			</td>
+				<td><%= order.total %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<% end %>
