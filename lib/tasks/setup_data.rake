@@ -1,14 +1,13 @@
 task :setup_data => :environment do 
 
+=begin
 10.times do
 	category = Category.new
 	category.name = Faker::Commerce.department(1)
 	category.save
 end
+=end
 
-end
-
-=begin
 1000.times do 
 	product = Product.new
 	product.name = Faker::Commerce.product_name
@@ -23,7 +22,6 @@ end
 	product.category_id = Category.all.pluck(:id).sample
 	product.save
 end
-=end
 
 =begin
 50.times do 
@@ -52,3 +50,4 @@ end
 	end
 end
 =end
+end
