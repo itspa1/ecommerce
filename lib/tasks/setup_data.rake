@@ -8,6 +8,7 @@ task :setup_data => :environment do
 end
 =end
 
+
 1000.times do 
 	product = Product.new
 	product.name = Faker::Commerce.product_name
