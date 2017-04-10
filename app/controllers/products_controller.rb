@@ -6,7 +6,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    if params[:name]
+      @products = Product.where('name LIKE ?',"%#{params[:name]}%")
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1

@@ -1,6 +1,10 @@
 
-<h1>Listing Products</h1>
+<h1>Listing Products(<%= @products.count%>)</h1>
 
+<%= form_tag("/products", method: :get) do %>
+  <%= text_field_tag :name %>
+  <%= submit_tag "search" %>
+<% end %>
 
 <table>
   <thead>
