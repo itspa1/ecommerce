@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
 	after_save :copy_cart_line_items
 	after_save :clear_user_cart
 	after_save :update_stock_for_product
-	after_save :send_order_confirmation_notification
+	#after_save :send_order_confirmation_notification
 
 
 	def send_order_confirmation_notification
