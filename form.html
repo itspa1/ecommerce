@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+</head>
+<body>
+
+	<form id="contactform" action="/users/sign_in" method="post">
+
+		<p id="errors"></p>
+
+		<label>Name:</label>
+		<input type="text" name="name" id="name"><br/><br/>
+
+		<label>Email:</label>
+		<input type="text" name="email" id="email"><br/><br/>
+
+		<input type="checkbox" name="terms" id="terms">I Agree<br/><br/>
+
+		<input type="submit" value="submit" id="submit"><br/><br/>
+		
+	</form>
+
+	<script>
+		var nameHandle = document.getElementById('name');
+		var errorsHandle = document.getElementById('errors');
+		var submitHandle = document.getElementById('submit');
+
+		submitHandle.disabled = true;
+		nameHandle.onblur = function(){
+			if(nameHandle.value == ""){
+				errorsHandle.innerHTML = "Name can't be blank.";
+			}else{
+				errorsHandle.innerHTML = "";
+				submitHandle.disabled = false;
+			}
+		};
+
+		nameHandle.onfocus = function(){
+			errorsHandle.innerHTML = "";
+		};
+	</script>
+</body>
+</html>

@@ -1,15 +1,4 @@
-
-<h1>Listing Products(<%= @products.count%>)</h1>
-
-<%= form_tag("/products", method: :get) do %>
-  <%= text_field_tag :name %>
-  <%= submit_tag "search" %>
-<% end %>
-
-<% if user_signed_in? && current_user.is_admin %>
-  <%= link_to "export to excel", products_path(format: "xls") %>
-<% end %>
-
+<h2>Product details</h2>
 <table>
   <thead>
     <tr>
@@ -50,17 +39,7 @@
           <% avg = avg.inject(:+) / avg.length %>
          <td> <%= avg %> </td>
         <% end %>
-        <% if user_signed_in? && current_user.is_admin %>
-          <td><%= link_to 'Edit', edit_product_path(product) %></td>
-          <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<% if user_signed_in? && current_user.is_admin %>
-  <%= link_to 'New Product', new_product_path %>
-<% end %>

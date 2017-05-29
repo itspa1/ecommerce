@@ -6,6 +6,7 @@ class DashboardController < ApplicationController
   	@categories = Category.all
   	@orders = Order.order('total DESC').limit(10)
   	@orderperuser = Order.all
+    @products = Product.all
   end
   
   def customer

@@ -1,0 +1,1 @@
+node(:products_count){@category.products.size}

@@ -26,3 +26,26 @@
 		end%>
 
 <%= column_chart orderdata ,xtitle: "Users", ytitle: "Orders"%>
+
+<script> 
+$(document).ready(function(){
+    $('#productsTable').DataTable();
+});
+</script>
+<table id="productsTable">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @products.each do |product| %>
+		<tr>
+			<td><%= product.name %></td>
+			<td><%= product.price %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+

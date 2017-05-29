@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Testing AJAX</title>
+</head>
+<body>	
+	<h2>Load Text</h2>
+	<p id="here"></p>
+	<button id="button">Load Text</button><br/>
+	<a href="data.txt">view text</a>
+
+
+	<script> 
+	var hereHandle = document.getElementById('here');
+	var buttonHandle = document.getElementById('button');
+	function ajaxCall(){
+		var request = new XMLHttpRequest();
+		request.open('GET','data.txt');
+		request.onreadystatechange = function(){
+			if(request.readyState === 4 && request.status === 200){
+				hereHandle.innerHTML = request.responseText;
+			}
+		}
+		request.send();
+	}
+	button.onclick = ajaxCall;
+
+	</script>
+
+</body>
+</html>

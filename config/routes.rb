@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'api/check_email'
   get 'dashboard/index'
   get 'dashboard/customer'
   get 'dashboard/order'
+  get 'categories/count_products'
   resources :coupons
   devise_for :users
   resources :products

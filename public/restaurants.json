@@ -1,0 +1,30 @@
+[
+	{
+		"id" : 1,
+		"city_id" : 1,
+		"name" : "Toit",
+		"rating" : 3.2,
+		"pricefortwo" : 1200
+	},
+	{
+		"id" : 2,
+		"city_id" : 1,
+		"name" : "MS",
+		"rating" : 4,
+		"pricefortwo" : 500
+	},
+	{
+		"id" : 3,
+		"city_id" : 3,
+		"name" : "Subz",
+		"rating" : 3.9,
+		"pricefortwo" : 1500
+	},
+	{
+		"id" : 4,
+		"city_id" : 2,
+		"name" : "Truffles",
+		"rating" : 4.5,
+		"pricefortwo" : 900
+	}
+]

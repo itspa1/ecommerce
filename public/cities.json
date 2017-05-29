@@ -1,0 +1,18 @@
+[	
+	{
+	"id": 1,
+	"name" :"bangalore"
+	},
+	{
+	"id" : 2,
+	"name" : "mysore"
+	},
+	{
+	"id" : 3,
+	"name" : "kadapa"
+	},
+	{
+	"id" : 4,
+	"name" : "mangalore"
+	}
+]

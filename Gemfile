@@ -4,6 +4,7 @@ gem 'chartkick'
 gem 'faker'
 gem 'pry'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem 'rabl'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 

@@ -14,6 +14,10 @@ class CategoriesController < ApplicationController
   def show
   end
 
+  def count_products
+    @category = Category.find(params[:category_id])
+  end 
+
   # GET /categories/new
   def new
     @category = Category.new
